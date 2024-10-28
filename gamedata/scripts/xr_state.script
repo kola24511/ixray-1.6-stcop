@@ -402,4 +402,4 @@ end
 
 function anim_update(type, npc)
 	return db.storage[npc:id()].state:anim_update(type)
-end 
+end
