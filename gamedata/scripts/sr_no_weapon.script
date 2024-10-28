@@ -44,9 +44,11 @@ function action_no_weapon:update( delta )
 	
 	self:switch_state( actor )
 	
+	-- IX-Ray: Added security check for multiplayer compatibility
 	if (IsDedicated()) then
 		return
 	end
+	-- END IX-Ray
 	
 	local hud = get_hud()
 	local custom_static = hud:GetCustomStatic("can_use_weapon_now")
@@ -84,10 +86,12 @@ function action_no_weapon:zone_enter()
 	self.state = state_inside
 	bind_stalker.hide_weapon(self.object:id())
 
+	-- IX-Ray: Added security check for multiplayer compatibility
 	if (IsDedicated()) then
 		return
 	end
-
+	-- END IX-Ray
+	
 	local hud = get_hud()
 	local custom_static = hud:GetCustomStatic("can_use_weapon_now")
 	if custom_static ~= nil then

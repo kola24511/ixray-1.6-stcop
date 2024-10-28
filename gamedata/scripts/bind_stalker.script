@@ -56,6 +56,7 @@ function actor_binder:net_spawn(data)
 	self.task_manager = task_manager.get_task_manager()
 	self.spawn_frame = device().frame
 	self.already_jumped = false
+	-- self.loaded = false
 	benchmark.main()							          --' Distemper 06.2008 --
 	return true
 end
@@ -352,6 +353,11 @@ function actor_binder:update(delta)
 	-- Апдейт доступности для симуляции.
 	simulation_objects.get_sim_obj_registry():update_avaliability(alife():actor())
 
+    -- Not used
+	--if not self.loaded then 
+	--	get_console():execute("dump_infos")
+	--	self.loaded = true
+	--end
 	treasure_manager.get_treasure_manager():update()
 
 	if not(primary_objects_filled) then
@@ -360,7 +366,7 @@ function actor_binder:update(delta)
 	end
 	pda.fill_sleep_zones()
 	
-	SendScriptCallback("update")
+	SendScriptCallback("update") -- IX-Ray
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:save(packet)
@@ -429,7 +435,7 @@ function actor_binder:save(packet)
 	end
 	set_save_marker(packet, "save", true, "actor_binder")
 	
-	SendScriptCallback("save", packet)
+	SendScriptCallback("save", packet) -- IX-Ray
 end
 ----------------------------------------------------------------------------------------------------------------------
 function actor_binder:load(reader)
@@ -487,7 +493,7 @@ function actor_binder:load(reader)
 	end
 	set_save_marker(reader, "load", true, "actor_binder")
 
-	SendScriptCallback("load", reader)
+	SendScriptCallback("load", reader) -- IX-Ray
 end
 
 --*************************************************************

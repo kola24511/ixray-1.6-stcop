@@ -846,7 +846,7 @@ function sim_squad_scripted:show()
 		return
 	end
 	local spot = ""
-	if dev_debug then
+	if dev_debug then -- IX-Ray: Fixed PDA squad rendering in Lua devmode
 		if not(is_squad_monster[self.player_id]) then
 			local relation = game_relations.get_squad_goodwill_to_actor_by_id(self.id)
 			if(relation=="friends") then
