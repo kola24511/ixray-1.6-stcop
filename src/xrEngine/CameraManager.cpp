@@ -166,6 +166,7 @@ CCameraManager::CCameraManager(bool bApplyOnUpdate)
 	pp_zero.color_add.set			(0,0,0);
 
 	pp_affected						= pp_identity;
+	m_bAbsolutePositioning = false;
 	
 #if 0
 	CImGuiManager::Instance().Subscribe("CameraEffector", CImGuiManager::ERenderPriority::eLow + 1,
@@ -256,6 +257,7 @@ void CCameraManager::UpdateDeffered()
 			m_EffectorsCam.push_back(Effector);
 	}
 
+	m_bAbsolutePositioning = m_EffectorsCam.empty() ? false : m_EffectorsCam.front()->AbsolutePositioning();
 	m_EffectorsCam_added_deffered.clear	();
 }
 
@@ -520,6 +522,11 @@ void CCameraManager::ResetPP()
 	T->set_cm_imfluence		(0.0f);
 	T->set_cm_interpolate	(1.0f);
 	T->set_cm_textures		("", "");
+}
+
+bool CCameraManager::AbsolutePositioning()
+{
+	return m_bAbsolutePositioning;
 }
 
 void CCameraManager::Dump()

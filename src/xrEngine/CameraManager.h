@@ -87,6 +87,7 @@ protected:
 	EffectorPPVec			m_EffectorsPP;
 
 	bool					m_bAutoApply;
+	bool					m_bAbsolutePositioning;
 	SPPInfo					pp_affected;
 	void					UpdateDeffered();
 
@@ -124,6 +125,8 @@ public:
 	
 	void					ApplyDevice				(float _viewport_near);
 	static void				ResetPP					();
+
+	bool					AbsolutePositioning();
 
 							CCameraManager			(bool bApplyOnUpdate);
 	virtual					~CCameraManager			();

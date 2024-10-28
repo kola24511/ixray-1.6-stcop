@@ -1162,6 +1162,12 @@ void CActor::UpdatePlayerView()
 		has_visible = pCam && pCam->GetDist() >= 0.43f && (!pWeapon || !pWeapon->render_item_ui_query());
 		has_shadow_only = psGameFlags.test(rsActorShadow) && Render->get_generation() != IRender_interface::GENERATION_R1;
 	}
+
+	if (m_pActorEffector != nullptr && m_pActorEffector->AbsolutePositioning())
+	{
+		has_shadow_only = false;
+	}
+
 	setVisible(has_visible, has_shadow_only);
 
 	if (IsFocused())
