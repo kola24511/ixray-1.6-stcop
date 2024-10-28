@@ -188,7 +188,10 @@ void CControllerPsyHit::play_anim()
 {
 	SControlAnimationData		*ctrl_anim = (SControlAnimationData*)m_man->data(this, ControlCom::eControlAnimation); 
 	VERIFY						(ctrl_anim);
-
+	if (ctrl_anim == nullptr)
+	{
+		return;
+	}
 	ctrl_anim->global.set_motion ( m_stage[m_current_index] );
 	ctrl_anim->global.actual	= false;
 }
