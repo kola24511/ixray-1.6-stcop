@@ -72,15 +72,17 @@ void CUIMapList::StartDedicatedServer()
 
 	xr_strcpy(g_sLaunchWorkingFolder, moduleDir.xstring().c_str());
 			
-	xr_strcpy			(g_sLaunchOnExit_app, g_sLaunchWorkingFolder);
-	xr_strcat			(g_sLaunchOnExit_app, "xrServer.exe");
+	xr_strcpy           (g_sLaunchOnExit_app, "\"");
+	xr_strcat           (g_sLaunchOnExit_app, g_sLaunchWorkingFolder);
+	xr_strcat			(g_sLaunchOnExit_app, "xrServer.exe\"");
 
-	xr_strcpy			(g_sLaunchOnExit_params, g_sLaunchOnExit_app);
 	xr_strcat			(g_sLaunchOnExit_params, " -i -fsltx fsgame.ltx -ltx -nosound -");
-	xr_strcat			(g_sLaunchOnExit_params, GetCommandLine("")); //GetCommandLine в аргументах принимает имя юзера, по умолчанию User
+	xr_strcat			(g_sLaunchOnExit_params, GetCommandLine("")); //GetCommandLine default playername = User
+
 	Msg					("Going to quit before starting dedicated server");
 	Msg					("Working folder is:%s", g_sLaunchWorkingFolder);
 	Msg					("%s %s",g_sLaunchOnExit_app, g_sLaunchOnExit_params);
+
 	Console->Execute	("quit");
 }
 
