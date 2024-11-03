@@ -35,6 +35,8 @@ public:
 			void	LoadMapList();
 			void	SaveMapList();
 	const char*		GetCommandLine(LPCSTR player_name);
+	const char*     GetCommandLineDedicated(LPCSTR player_name);
+	const char*     GetPlayerName(const LPCSTR player_name);
 			EGameIDs	GetCurGameType();
 			void	StartDedicatedServer();
 			void	ClearList();
